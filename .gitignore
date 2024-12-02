@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Intermediates/targets
+out/
+
+# VS stuff
+.vs/
