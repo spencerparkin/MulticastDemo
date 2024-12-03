@@ -27,6 +27,11 @@ MulticastSender::MulticastSender()
 	if (this->socket == INVALID_SOCKET)
 		return false;
 
+	int timeToLive = 255;
+	int error = ::setsockopt(this->socket, IPPROTO_IP, IP_MULTICAST_TTL, (const char*)&timeToLive, sizeof(timeToLive));
+	if (error < 0)
+		return false;
+
 	::memset(&this->multicastAddr, 0, sizeof(this->multicastAddr));
 	this->multicastAddr.sin_family = AF_INET;
 	this->multicastAddr.sin_addr.S_un.S_addr = inet_addr(this->multicastIPAddr.c_str());
