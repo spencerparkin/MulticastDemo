@@ -35,12 +35,18 @@ void MulticastReceiver::SetLocalAddress(const std::string& localIPAddr, uint32_t
 	if (this->socket == INVALID_SOCKET)
 		return false;
 
+	// This is only necessary for running multiple instances of the receiver on the same machine, I think.
+	char flag = 1;
+	int error = ::setsockopt(this->socket, SOL_SOCKET, SO_REUSEADDR, (const char*)&flag, sizeof(flag));
+	if (error != 0)
+		return false;
+
 	::memset(&this->localAddr, 0, sizeof(localAddr));
 	this->localAddr.sin_family = AF_INET;
 	this->localAddr.sin_addr.S_un.S_addr = inet_addr(this->localIPAddr.c_str());
 	this->localAddr.sin_port = htons(this->localPort);
 
-	int error = ::bind(this->socket, (const sockaddr*)&this->localAddr, sizeof(this->localAddr));
+	error = ::bind(this->socket, (const sockaddr*)&this->localAddr, sizeof(this->localAddr));
 	if (error < 0)
 		return false;
 
