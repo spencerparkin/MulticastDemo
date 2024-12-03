@@ -30,7 +30,7 @@ MulticastSender::MulticastSender()
 	::memset(&this->multicastAddr, 0, sizeof(this->multicastAddr));
 	this->multicastAddr.sin_family = AF_INET;
 	this->multicastAddr.sin_addr.S_un.S_addr = inet_addr(this->multicastIPAddr.c_str());
-	this->multicastAddr.sin_port = this->multicastPort;
+	this->multicastAddr.sin_port = htons(this->multicastPort);
 
 	return true;
 }

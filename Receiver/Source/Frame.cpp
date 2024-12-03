@@ -16,7 +16,7 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "Receiver"), timer(this, ID_Timer)
 	this->Bind(wxEVT_MENU, &Frame::OnExit, this, ID_Exit);
 	this->Bind(wxEVT_TIMER, &Frame::OnTimer, this, ID_Timer);
 
-	this->textControl = new wxTextCtrl(this, wxID_ANY);
+	this->textControl = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY | wxTE_MULTILINE);
 
 	wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
 	boxSizer->Add(this->textControl, 1, wxALL | wxGROW, 2);

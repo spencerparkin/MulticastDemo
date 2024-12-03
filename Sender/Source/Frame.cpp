@@ -21,7 +21,7 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "Sender")
 
 	wxBoxSizer* boxSizer = new wxBoxSizer(wxVERTICAL);
 	boxSizer->Add(this->textControl, 1, wxALL | wxGROW, 2);
-	boxSizer->Add(this->sendButton, 1, wxLEFT | wxRIGHT | wxBOTTOM, 2);
+	boxSizer->Add(this->sendButton, 0, wxLEFT | wxRIGHT | wxBOTTOM, 2);
 	this->SetSizer(boxSizer);
 }
 
@@ -37,7 +37,8 @@ void Frame::OnExit(wxCommandEvent& event)
 void Frame::OnSendButtonPressed(wxCommandEvent& event)
 {
 	SocketHelper::MulticastSender* sender = wxGetApp().GetSender();
-	static int i = 0;
-	std::string message = std::format("Message #{}", i++);
-	sender->Send((uint8_t*)message.c_str(), message.length());
+	wxString text = this->textControl->GetValue();
+	const uint8_t* buffer = (const uint8_t*)text.c_str();
+	uint32_t bufferSize = text.Length() + 1;
+	sender->Send(buffer, bufferSize);
 }

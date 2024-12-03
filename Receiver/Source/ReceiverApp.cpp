@@ -19,7 +19,7 @@ ReceiverApp::ReceiverApp()
 
 	this->receiver.SetLocalAddress("192.168.0.5", 12345);
 	this->receiver.SetMulticastAddress("239.255.255.250", 12345);
-	if (this->receiver.Setup())
+	if (!this->receiver.Setup())
 		return false;
 
 	this->frame = new Frame();
