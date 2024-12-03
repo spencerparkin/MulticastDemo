@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/app.h>
+#include "ThreadedMulticastReceiver.h"
 
 class Frame;
 
@@ -13,8 +14,11 @@ public:
 	virtual bool OnInit() override;
 	virtual int OnExit() override;
 
+	SocketHelper::ThreadedMulticastReceiver* GetReceiver();
+
 private:
 	Frame* frame;
+	SocketHelper::ThreadedMulticastReceiver receiver;
 };
 
 wxDECLARE_APP(ReceiverApp);

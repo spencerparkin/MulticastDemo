@@ -17,6 +17,10 @@ SenderApp::SenderApp()
 	if (!wxApp::OnInit())
 		return false;
 
+	this->sender.SetMulticastAddress("239.255.255.250", 12345);
+	if (!this->sender.Setup())
+		return false;
+
 	this->frame = new Frame();
 	this->frame->Show();
 
@@ -25,5 +29,11 @@ SenderApp::SenderApp()
 
 /*virtual*/ int SenderApp::OnExit()
 {
+	this->sender.Shutdown();
 	return 0;
+}
+
+SocketHelper::MulticastSender* SenderApp::GetSender()
+{
+	return &this->sender;
 }

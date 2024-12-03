@@ -12,9 +12,9 @@ source_group("Sources" TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${RECEIVER_APP_SOU
 add_executable(ReceiverApp WIN32 ${RECEIVER_APP_SOURCES})
 target_compile_definitions(ReceiverApp PUBLIC __WXMSW__ _UNICODE)
 
-#target_link_libraries(ReceiverApp PRIVATE
-#    
-#)
+target_link_libraries(ReceiverApp PRIVATE
+    SocketHelperLib
+)
 
 target_compile_definitions(ReceiverApp PRIVATE
     WIN32_LEAN_AND_MEAN

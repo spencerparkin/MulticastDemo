@@ -12,9 +12,9 @@ source_group("Sources" TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SENDER_APP_SOURC
 add_executable(SenderApp WIN32 ${SENDER_APP_SOURCES})
 target_compile_definitions(SenderApp PUBLIC __WXMSW__ _UNICODE)
 
-#target_link_libraries(SenderApp PRIVATE
-#    
-#)
+target_link_libraries(SenderApp PRIVATE
+    SocketHelperLib
+)
 
 target_compile_definitions(SenderApp PRIVATE
     WIN32_LEAN_AND_MEAN

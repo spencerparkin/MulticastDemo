@@ -12,3 +12,4 @@ set(WX_WIDGETS_ROOT "E:/wxWidgets")
 
 add_subdirectory(Sender)
 add_subdirectory(Receiver)
+add_subdirectory(SocketHelper)
