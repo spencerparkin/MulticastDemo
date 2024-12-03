@@ -42,5 +42,6 @@ void Frame::OnTimer(wxTimerEvent& event)
 	{
 		wxString text((const char*)message.buffer);
 		this->textControl->AppendText(text + "\n");
+		delete[] message.buffer;
 	}
 }

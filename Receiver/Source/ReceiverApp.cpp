@@ -17,8 +17,8 @@ ReceiverApp::ReceiverApp()
 	if (!wxApp::OnInit())
 		return false;
 
-	this->receiver.SetLocalAddress("192.168.0.5", 12345);
-	this->receiver.SetMulticastAddress("239.255.255.250", 12345);
+	this->receiver.SetLocalAddress("192.168.0.5", 8908);
+	this->receiver.SetMulticastAddress("234.5.0.5", 8908);
 	if (!this->receiver.Setup())
 		return false;
 

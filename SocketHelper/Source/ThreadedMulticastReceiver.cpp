@@ -32,6 +32,13 @@ ThreadedMulticastReceiver::ThreadedMulticastReceiver()
 		this->thread = nullptr;
 	}
 
+	while (this->messageList.size() > 0)
+	{
+		Message message = *this->messageList.begin();
+		delete[] message.buffer;
+		this->messageList.pop_front();
+	}
+
 	return true;
 }
 

@@ -17,7 +17,7 @@ SenderApp::SenderApp()
 	if (!wxApp::OnInit())
 		return false;
 
-	this->sender.SetMulticastAddress("239.255.255.250", 12345);
+	this->sender.SetMulticastAddress("234.5.0.5", 8908);
 	if (!this->sender.Setup())
 		return false;
 
